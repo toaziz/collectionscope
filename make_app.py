@@ -16,20 +16,21 @@ parser.add_argument('-clean', dest="CLEAN", action="store_true", help="Start fro
 parser.add_argument('-probe', dest="PROBE", action="store_true", help="Just print commands?")
 a = parser.parse_args()
 
-PYTHON_NAME = a.PYTHON_NAME if len(a.PYTHON_NAME) > 0 else sys.executable
+PYTHON_NAME = a.PYTHON_NAME if len(a.PYTHON_NAME) > 0 else f"{sys.executable}"
 config = tu.loadConfig(a.CONFIG_FILE)
 overwriteFlag = ' -overwrite' if a.CLEAN else ''
 
 commands = [
-    '{python_name} scaffold.py -config "{config_file}"{overwrite}'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE, overwrite=overwriteFlag),
-    '{python_name} prepare_metadata.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    '{python_name} prepare_sets.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    '{python_name} prepare_positions.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    '{python_name} prepare_textures.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    '{python_name} prepare_labels.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    # '{python_name} prepare_sounds.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
-    '{python_name} prepare_content.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE)
+    '"{python_name}" scaffold.py -config "{config_file}"{overwrite}'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE, overwrite=overwriteFlag),
+    '"{python_name}" prepare_metadata.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    '"{python_name}" prepare_sets.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    '"{python_name}" prepare_positions.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    '"{python_name}" prepare_textures.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    '"{python_name}" prepare_labels.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    # '"{python_name}" prepare_sounds.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE),
+    '"{python_name}" prepare_content.py -config "{config_file}"'.format(python_name=PYTHON_NAME, config_file=a.CONFIG_FILE)
 ]
+
 
 for command in commands:
     print('-------------------------------')

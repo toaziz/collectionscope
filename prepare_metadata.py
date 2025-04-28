@@ -48,9 +48,10 @@ if "stories" in config:
                 storyItems[str(slide["itemId"])] = slideMeta
 
 itemsPerFile = a.ITEMS_PER_FILE
+
 if itemsPerFile < 1:
     targetFiles = 1000
-    itemsPerFile = mu.roundInt(1.0 * itemCount / targetFiles)
+    itemsPerFile = max(1, mu.roundInt(1.0 * itemCount / targetFiles))  # Ensure at least 1
     itemsPerFile = min(itemsPerFile, 1000)
 
 totalFiles = mu.ceilInt(1.0 * itemCount / itemsPerFile)

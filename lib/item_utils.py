@@ -44,6 +44,7 @@ def getItemCategories(items, key="category"):
 def getItems(config):
     inputFile = config["metadataFile"]
     idCol = config["identifierColumn"] if "identifierColumn" in config else None
+    
 
     fieldnames, items = io.readCsv(inputFile, parseNumbers=False)
     if "metadataFilterQuery" in config:
